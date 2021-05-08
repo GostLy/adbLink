@@ -1,5 +1,6 @@
-adbFire is a companion program for FireTV XBMC, (Gotham and later only).
-It allows you to sideload XBMC and other apps without the hassle of
- downloading the Android SDK and other tools. Additionally, it allows 
-you to copy files to and from XBMC, backup and restore XBMC's data, root
-the FireTV and more.
+# adbLink
+Official URL http://www.jocala.com
+
+adbLink is used to connect/manage android devices.
+
+The main purpose of this repository is to provide the source files to AUR (Arch User Repository) so it can be found/installed using pacman.
