@@ -100,10 +100,14 @@ RC_FILE = adbLink.rc
 
 ICON = adbLink.icns
 
-QMAKE_MAC_SDK = macosx10.15
+#QMAKE_MAC_SDK = macosx10.15
 
-OTHER_FILES +=
+QMAKE_MAC_SDK = macosx12.0
 
-#QMAKE_LFLAGS += -no-pie
+linux {
+QMAKE_LFLAGS += -no-pie
+}
 
 #CONFIG+=sdk_no_version_check
+
+OTHER_FILES +=
