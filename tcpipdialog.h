@@ -26,4 +26,6 @@ private:
     Ui::tcpipDialog *ui;
 };
 
+extern int tcpon;
+
 #endif // TCPIPDIALOG_H

@@ -50,4 +50,17 @@ private:
     Ui::uninstallDialog *ui;
 };
 
+
+extern int ost;
+extern QString tmpdir;
+extern QString tmpstr;
+extern QString commstr;
+extern QString cstr;
+extern QString argument;
+extern QString adb2;
+extern QString fline;
+
+
+
+
 #endif // UNINSTALLDIALOG_H

@@ -18,8 +18,8 @@ public:
 public:
     int returnval2();
     QString externalLocation();
-   void setadb_data(const QString &adb_data);
-   void setadb_dir(const QString &adb_dir);
+   void setadb_data(const QStringList &list);
+ //  void setadb_dir(const QString &adb_dir);
 
 
 
@@ -34,10 +34,22 @@ private slots:
 
 
 
-    void on_listDirectories1_clicked(const QModelIndex &index);
+    void on_okButton_clicked();
+
+   void on_listDirectories1_doubleClicked();
+
 
 private:
     Ui::dataDialog *ui;
 };
+
+extern int os_data;
+extern int rval2;
+extern QString adbloc;
+extern QString adb_data;
+extern QString adbdir_data_data;
+extern QString tmpdir_data;
+extern QString external_location;
+
 
 #endif // DATADIALOG_H

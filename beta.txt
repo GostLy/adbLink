@@ -1,0 +1,46 @@
+beta 5.6
+
+File Manager now uses drag and drop for pushing files
+and directories from the local filesystem to the
+Android device. Although deprecated, the previous
+method of pushing files can still be used by
+checking "Use old file manager" in preferences.
+
+Application preferences now saved in a JSON file
+
+APK install directory retains last location used.
+
+Backup/restore directory retains last location used.
+
+Scrcpy arguments dialog is now optional via preferences. 
+
+Utility menu function added to clear database
+
+When notified a new version of adbLink is ready
+for download, view changelog is now an option. A
+utility menu function has been added to view changelog
+as well.
+
+Utility menu function added to view system information:
+(architecture, devicename, manufacturer, 
+filesystem scope status and Android version)
+
+Ad hoc IP now accepts a port.
+Enter ip with format: <ip>:<port>
+Default is port 5555. 
+
+Edit Kodi XML files (scoped storage) bugfix
+
+Edit Kodi XML files (non-Android) bugfix
+
+Scoped storage restrictions are now detected
+automatically for Android 11 or greater devices.
+
+For adbLink and adbLink2, WSA (Windows Subsystem for Android)
+devices are connected via a utility menu selection.
+
+QT C++ framework updated to 5.15.2 for all platforms.
+
+Windows scrcpy updated to scrcpy-win64-v2.1 
+
+Windows adblink/adblink2/wsalink are now x86_64 only. 

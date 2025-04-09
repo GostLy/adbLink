@@ -50,18 +50,21 @@ QString RunProcess_ufd(QString cstring);
 
 QString RunLongProcess_ufd(QString cstring);
 
-// void do_copymove(int opcode);
-
-// void do_move();
 
 void do_copy(int opcode);
 
 
 void setPulldir(const QString &pullstr);
 
+
+
 void setAdbdir(const QString &adbstr);
+void setuProgram(const QString &fprogram);
+
 
 void setdisableroot(const bool &disableroot);
+
+void setoldfm(const bool &oldfm);
 
 bool checkRoot();
 
@@ -82,6 +85,7 @@ bool checkRoot();
     QString commstr1;
     QString adb21;
     QString adbdir_ufd;
+    QString fmprogram;
     QString cstring;
     QString cstr1;
     QString previous_directory1;
@@ -105,21 +109,18 @@ private slots:
     QString fix_directory(QString dirname);
      bool is_directory(QString fdirectory);
 
- //   void rootpull();
-  //  void shellpull();
 
     void rootpush(QStringList filenames);
     void userpush(QStringList filenames);
 
-    void on_pushButton_clicked();
+
+
+    void newPush();
+    void oldPush();
     void on_pullButton_clicked();
     void on_copyButton_clicked();
     void on_delButton_clicked();
     void on_editButton_clicked();
-
-
-    void logfile_ufd(QString line);
-
 
     void on_moveButton_clicked();
     void on_resetButton_clicked();
@@ -136,6 +137,21 @@ void usbTimerEvent();
 
 
 
+void gather_push();
+
+
+void on_pushfilesButton_clicked();
+
+
+
 };
+
+
+extern int ost1;
+extern bool hasfocus;
+extern QString ufdlogfiledir;
+extern bool noroot;
+extern QString quote1;
+extern QString quote2;
 
 #endif // USBFILEDIALOG_H

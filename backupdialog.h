@@ -33,4 +33,15 @@ private:
     Ui::backupDialog *ui;
 };
 
+
+extern int os_backup;
+extern QString adb_backup;
+extern QString adbdir_backup;
+extern QString tmpdir_backup;
+extern QString thumbnail_backup_dir;
+extern QString data_root_backup;
+
+
+
+
 #endif // BACKUPDIALOG_H

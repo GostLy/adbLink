@@ -31,4 +31,10 @@ private:
     Ui::editorDialog *ui;
 };
 
+
+extern int edos;
+extern QClipboard *edclipboard;
+
+
+
 #endif // EDITORDIALOG_H

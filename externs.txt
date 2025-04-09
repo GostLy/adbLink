@@ -1,0 +1,62 @@
+
+extern bool   isConnected;
+extern bool   serverRunning;
+extern bool   is_packageInstalled;
+
+
+extern bool   dbexists;
+extern bool   updatecheck;
+extern bool   versioncheck;
+extern bool   isusb;
+extern bool   disableroot;
+
+extern QString port;
+extern QString filename;
+extern QString adbdir;
+extern QString adb;
+extern QString aapt;
+extern QString fastboot;
+extern QString xmldir;
+extern QString splashdir;
+
+
+
+extern QString hdir;
+extern QString daddr;
+extern QString sldir;
+extern QString pushdir;
+extern QString pulldir;
+extern QString xbmcpackage;
+extern QString ostype;
+extern QString data_root;
+extern QString buffersize;
+extern QString bufferfactor;
+extern QString dbstring;
+extern QString description;
+extern QString filepath;
+extern QString busypath;
+extern QString adblog;
+extern QStringList bufferlist;
+
+
+extern QString adbstr1
+extern QString adbstr2
+extern QString devstr1
+extern QString devstr2
+extern QString program
+extern QString tempdir
+extern QString logfiledir;
+extern QString databasedir;
+extern QString downloaddir;
+
+extern int usbcheck;
+extern int rootpath;
+extern int ftvupdate;
+extern int checkversion;
+extern int extdata;
+extern int buffermode;
+extern int tsvalue;
+extern int ct;
+extern int Id;
+extern int deviceboxindex;
+

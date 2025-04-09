@@ -17,8 +17,11 @@ public:
 
       void setPackagename(const QString &packagename);
       void setPulldir(const QString &pulldir);
-    //  void setversioncheck(const bool &versioncheck);
       void setisusb(const bool &isusb);
+      void setscope(const bool &scoped);
+       void setwsa(const bool &wsa);
+
+      void setconn(const bool &isconn);
       void setversionLabel(const QString &versiontext);
       void setostype(const QString &ostype);
       void setdaddr(const QString &daddr);
@@ -26,7 +29,6 @@ public:
       void setdescription(const QString &description);
       void setfilepath(const QString &filepath);
       void setdataroot(const QString &data_root);
-    //  void setdeviceindex(const int &deviceindex);
       void setport(const QString &port);
       void setadb_pref(const QString &adb_pref);
       void setrecnum(const QString &recnum);
@@ -48,8 +50,9 @@ public:
    // bool versioncheck();
 
    bool isusb();
-
-       bool disableroot();
+   bool scoped();
+   bool wsa();
+   bool disableroot();
 
 
 int returnval1();
@@ -72,6 +75,14 @@ private slots:
 
 
    void on_listDevicesp_doubleClicked(const QModelIndex &index);
+
+
+   void on_clearPort_clicked();
+
+   void on_wsa_clicked(bool checked);
+
+   void on_scoped_clicked(bool checked);
+
 
 
 private:

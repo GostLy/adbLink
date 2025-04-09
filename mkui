@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $(uname -s) == "Darwin" ]]; then
+    # macOS
+    for file in *.ui; do
+        if ! grep -q "ui_pragma" "$file"; then
+            sed -i '' '1s/^/ui_pragma no_warn_shadow layoutWidget\n/' "$file"
+        fi
+    done
+else
+    # Linux
+    for file in *.ui; do
+        if ! grep -q "ui_pragma" "$file"; then
+            sed -i -e '1s/^/ui_pragma no_warn_shadow layoutWidget\n/' "$file"
+        fi
+    done
+fi

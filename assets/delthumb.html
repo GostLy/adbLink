@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Delete Thumbnails</title></head><body>
+
+It's a common occurrence to encounter the "low on storage" popup on devices
+with meagre storage, such as the Fire TV Stick, when running Kodi. Almost always
+the cause is the amount of cached images in the folder userdata/Thumbnails.
+<p>
+Kodi thumbnails cache can grow over time and depending on your playing habits and media
+library collection can reach several gigabytes. Also Kodi does not automatically delete
+unused thumbnails. If you delete a video its cached artwork remains in the Thumbnails folder
+<p>
+Luckily, Kodi will re-cache needed artwork when required. So the easiest way to fix the 
+low storage warning is to delete the userdata/Thumbnails folder and its accompanying database
+Database/TexturesXX.db. This function does just that. 
+<p>
+If you're storing your media on a NAS or a large external drive, it's a good practice
+to export your library from time to time. In Settings:<p>
+
+system/media/library<br>
+Export Library<br>
+Separate<p>
+
+This will store a video's artwork and nfo file on the drive with the video. When Kodi
+needs to re-cache it will be almost instantaneous. This also makes rebuilding your library
+quite easy should some disaster occur.
+
+
+<p>
+If you have questions or comments, please email jocala@jocala.com or visit one of the forums linked below. adbLink produces a log file, adblink.log, with each run. Include it in your email or post if you're having problems.<p>
+<a href="menu.html">main menu</a>
+</body</html>
+

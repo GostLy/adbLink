@@ -11,20 +11,18 @@
 
 
 
-
-#ifdef Q_OS_LINUX
- int os1=0;
-#elif defined(Q_OS_WIN)
-  int os1=1;
-#elif defined(Q_OS_MAC)
-int os1=2;
+#ifdef Q_OS_WIN
+QString logdir = QDir::homePath() + "/AppData/Roaming/.jocala/";
+#elif defined(Q_OS_UNIX)
+QString logdir = QDir::homePath() + "/.jocala/";
 #endif
 
-QString logdir;
 QString logfile1 = "adblink.log";
 QString logfile2 = "adblink.old.log";
 QString content;
 bool getfile=true;
+
+
 
 QClipboard *clipboard = QApplication::clipboard();
 
@@ -66,35 +64,9 @@ adblogDialog::adblogDialog(QWidget *parent) :
 
      setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
-/*
-    if (os1 == 1)
-       {
-        logdir = "./";
-       }
 
-  if (os1 == 2)
-
-       {
-         logdir = QCoreApplication::applicationDirPath();
-         logdir = logdir+"/adbfiles/";
-       }
-
-  if (os1 == 0)
-
-       {
-         logdir = QCoreApplication::applicationDirPath();
-         logdir = logdir+"/adbfiles/";
-       }
-
-*/
-
-  if (os1==1)
-     logdir= QDir::homePath()+"/AppData/Roaming/.jocala/";
-  else
-   logdir = QDir::homePath()+"/.jocala/";
-
-     getlog();
-     ui->logfileName->setText("adblink.log");
+    getlog();
+    ui->logfileName->setText("adblink.log");
     ui->logBrowser->setPlainText(content);
 
 

@@ -35,4 +35,22 @@ private:
     Ui::oslogDialog *ui;
 };
 
+
+
+extern int los1;
+extern bool osgetfile;
+extern QString oslogfile1;
+extern QString oslogfile2;
+extern QString currlog;
+extern QString oldlog;
+extern QString cliplog;
+extern QString logText;
+extern QString oldlogText;
+extern QClipboard *osclipboard;
+
+
+
+
+
+
 #endif // OSLOGDIALOG_H

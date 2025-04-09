@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
-    <height>377</height>
+    <width>613</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,9 @@
    <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
@@ -76,42 +79,7 @@
        </property>
        <item>
         <property name="text">
-         <string>kodi</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>addons</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>keymaps</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>media</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sounds</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>system</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>userdata</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>temp</string>
+         <string>sdcard</string>
         </property>
        </item>
        <item>
@@ -121,12 +89,22 @@
        </item>
        <item>
         <property name="text">
-         <string>sdcard</string>
+         <string>data/local/tmp</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>data/local/tmp</string>
+         <string>kodi</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>userdata</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>addons</string>
         </property>
        </item>
       </widget>
@@ -363,7 +341,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushfilesButton">
        <property name="maximumSize">
         <size>
          <width>81</width>
@@ -469,6 +447,9 @@
        </property>
        <property name="autoDefault">
         <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

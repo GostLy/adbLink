@@ -12,7 +12,7 @@ class forcequitDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit forcequitDialog(bool takeaction, QWidget *parent = 0);
+    explicit forcequitDialog(bool takeaction, QString appname, QWidget *parent = 0);
     ~forcequitDialog();
 
     QString packagename();
@@ -23,6 +23,8 @@ private slots:
     void on_spmcButton_clicked();
 
     void on_otherButton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     bool m_action;

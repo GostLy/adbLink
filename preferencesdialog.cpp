@@ -1,5 +1,6 @@
 #include "preferencesdialog.h"
 #include "ui_preferencesdialog.h"
+#include "getadbdata.h"
 #include <QFileDialog>
 #include <QProcess>
 #include <QNetworkAccessManager>
@@ -36,23 +37,6 @@ QString xpackage;
 QString adbdir_pref;
 QString adb_pref;
 bool su_pref;
-
-///////////////////////////////////////////////
-QString RunProcess_pref(QString cstring)
-{
- QProcess run_command;
- run_command.setProcessChannelMode(QProcess::MergedChannels);
- run_command.start(cstring);
-
- run_command.waitForStarted();
-
- while(run_command.state() != QProcess::NotRunning)
-     qApp->processEvents();
-
- QString command=run_command.readAll();
-
- return command;
-}
 
 ////////////////////////////////////////////////
  QString strip2 (QString str)
@@ -106,6 +90,11 @@ preferencesDialog::preferencesDialog(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
+
+
+    adbdir_pref = QCoreApplication::applicationDirPath()+"/adbfiles/";
+
+  /*
     if (os_pref == 1)
             {
              adbdir_pref = "./";
@@ -123,6 +112,8 @@ preferencesDialog::preferencesDialog(QWidget *parent) :
                adbdir_pref = QCoreApplication::applicationDirPath();
                adbdir_pref = adbdir_pref+"/adbfiles/";
             }
+
+ */
 
        on_isusb_clicked(ui->isusb->isChecked());
 
@@ -176,6 +167,22 @@ bool preferencesDialog::isusb() {
 
 }
 
+
+
+///////////////////////////////////////////////////
+bool preferencesDialog::wsa() {
+   return ui->wsa->isChecked();
+
+}
+
+
+///////////////////////////////////////////////////
+bool preferencesDialog::scoped() {
+   return ui->scoped->isChecked();
+
+}
+
+
 ///////////////////////////////////////////////////
 QString preferencesDialog::ostype() {
  QString ost= QString::number(ui->ostypeBox->currentIndex());
@@ -222,6 +229,21 @@ void preferencesDialog::setPulldir(const QString &pulldir)
 void preferencesDialog::setisusb(const bool &isusb)
 {
     ui->isusb->setChecked(isusb);
+}
+
+
+
+////////////////////////////////////////////////////////
+void preferencesDialog::setscope(const bool &scoped)
+{
+    ui->scoped->setChecked(scoped);
+}
+
+
+////////////////////////////////////////////////////////
+void preferencesDialog::setwsa(const bool &wsa)
+{
+    ui->wsa->setChecked(wsa);
 }
 
 
@@ -344,6 +366,8 @@ void preferencesDialog::on_pushButton_clicked()
    }
 
 
+
+
    if (ui->ostypeBox->currentIndex() == 0)
     {
        if (ui->daddr->text().isEmpty())
@@ -365,7 +389,7 @@ void preferencesDialog::on_pushButton_clicked()
 
        if (ui->packagename->text().isEmpty())
        {
-        QMessageBox::information(0, "","Package name is required.\nFill in or use preset",QMessageBox::Cancel);
+        QMessageBox::information(0, "","Package name is required.",QMessageBox::Cancel);
         }
       else
        {
@@ -385,7 +409,7 @@ void preferencesDialog::on_pushButton_clicked()
 
        if (ui->filepath->text().isEmpty())
        {
-        QMessageBox::information(0, "","Filepath is required.\nFill in or use preset",QMessageBox::Cancel);
+        QMessageBox::information(0, "","Filepath is required.",QMessageBox::Cancel);
         }
       else
        {
@@ -396,6 +420,33 @@ void preferencesDialog::on_pushButton_clicked()
    else {
           passval=passval+1;
     }
+
+
+
+   if (ui->description->text().contains('"')
+       | ui->daddr->text().contains('"')
+       | ui->packagename->text().contains('"')
+       | ui->filepath->text().contains('"')
+       | ui->data_root->text().contains('"')
+       | ui->pulldir->text().contains('"')
+       | ui->port->text().contains('"'))
+
+           {
+            QMessageBox::critical(0, "","Remove quotation marks",QMessageBox::Cancel);
+            passval = 0;
+           }
+
+   if (ui->description->text().contains("'")
+       | ui->daddr->text().contains("'")
+       | ui->packagename->text().contains("'")
+       | ui->filepath->text().contains("'")
+       | ui->data_root->text().contains("'")
+       | ui->pulldir->text().contains("'")
+       | ui->port->text().contains("'"))
+           {
+            QMessageBox::critical(0, "","Remove quotation marks",QMessageBox::Cancel);
+            passval = 0;
+           }
 
 
 
@@ -511,109 +562,77 @@ void preferencesDialog::setadb_pref(const QString &adb_pref)
 {
 
 
+   ui->listkodirootBox->clear();
+
+
+
     QString command;
     QString cstring;
-    QString mounted;
-    QString fline;
-    QString tmpdir_pref;
-
-
-    ui->listkodirootBox->addItem("/sdcard/");
-
-    //QMessageBox::information(0,"",adb_pref);
-
-    cstring=adb_pref+" shell /data/local/tmp/adblink/busybox which su";
-
-    command=RunProcess_pref(cstring);
-
-    if (command.contains("su"))
-        su_pref=true;
-      else su_pref=false;
-
-   // if (adb_pref.contains(":5555"))
-    //    ui->isusb->setEnabled(false);
-
-    cstring=adb_pref+" shell /data/local/tmp/adblink/busybox find /storage/ -type d -maxdepth 2 -perm 0771";
-    command=RunProcess_pref(cstring);
-
-    if (command.contains("error:"))
-         return;
-
-
-    //QMessageBox::information(0,"",command);
-
-    QFile file21(adbdir_pref+"temp.txt");
 
 
 
-    if(!file21.open(QFile::WriteOnly))
-
-      {
-          QMessageBox::critical(this,"","Error creating file!");
-
-          return;
-      }
+  if ( ostype() =="0")
+   {
 
 
-      QTextStream out1(&file21);
-      out1  << command << endl;
+      cstring = adb_pref + " shell /data/local/tmp/adblink/busybox find /storage -type d -maxdepth 1";
+      QString s = getadbOutput(cstring);
 
-      file21.flush();
-      file21.close();
+
+
+     QStringList list = s.split('\n');
+
+     for (int i = 0; i < list.size(); i++) {
+
+
+
+           list[i].remove('\r');
+           list[i].remove('\n');
+
+           if (list[i] == "Android" ||
+           list[i] == "Permission denied" ||
+           list[i] == "/storage/emulated" ||
+           list[i] == "/storage" ||
+           list[i] == "/storage/self" ||
+           list[i].contains("unknown") ||
+           list[i].contains("not found"))  {
+         list.removeAt(i);
+         i--;
+       }
+     }
+
+
+
+
+      list.insert(0, "/sdcard");
 
 
 
 
 
-      QString tmpstr2 = adbdir_pref+"temp.txt";
-      QString fline2;
-      QFile file32(tmpstr2);
 
-           if (!file32.open(QIODevice::ReadOnly | QIODevice::Text))
-             {QMessageBox::critical(0,"","Error reading file!");
-                return; }
-
-           QTextStream in1(&file32);
+{
 
 
+     for (int i = 0; i < list.size(); i++) {
+       ui->listkodirootBox->addItem(list[i]);
+     }
+
+ ui->listkodirootBox->item(0)->setSelected(true);
+}
+
+}
+
+ cstring=adb_pref+" shell /data/local/tmp/adblink/busybox which su";
+
+ command=getadbOutput(cstring);
+
+ if (command.contains("su"))
+     su_pref=true;
+   else su_pref=false;
 
 
-            while (!in1.atEnd())
-             {
-
-
-
-         fline2 = in1.readLine();
-
-              if( (!fline2.contains("Android"))
-                      && (!fline2.contains("."))
-                      && (!fline2.contains("Permission denied"))
-                      && (!fline2.contains("emulated"))
-                      && (!fline2.isEmpty())
-
-                      ) // endif
-                 {
-
-
-                  ui->listkodirootBox->addItem(fline2+"/");
-
-                 }
-
-                  // i =  fline2.indexOf("\t");
-
-                    //usbid =fline2.mid(0,i);
-
-
-
-                }
-
-
-              ui->listkodirootBox->item(0)->setSelected(true);
-
-                 file32.close();
-                  QFile::remove(tmpstr2);
-
-            }
+}
 
 
 
@@ -633,6 +652,10 @@ void preferencesDialog::disable_ui()
     ui->port->setText("");
     ui->port->setEnabled(false);
     ui->isusb->setEnabled(false);
+    ui->scoped->setEnabled(false);
+    ui->wsa->setEnabled(false);
+
+
     ui->listkodirootBox->setEnabled(false);
 
     ui->daddr->setText("");
@@ -656,6 +679,10 @@ void preferencesDialog::enable_ui()
     ui->port->setEnabled(true);  
     ui->port->setText("5555");
     ui->isusb->setEnabled(true);
+    ui->scoped->setEnabled(true);
+    ui->wsa->setEnabled(true);
+
+
     ui->listkodirootBox->setEnabled(true);
 
     ui->daddr->setEnabled(true);
@@ -694,6 +721,8 @@ void preferencesDialog::on_ostypeBox_currentIndexChanged(int index)
         if(ui->data_root->text().isEmpty())
            ui->data_root->setText("/sdcard/");
 
+
+        ui->daddr->setText("");
 
         break;
 
@@ -744,6 +773,37 @@ void preferencesDialog::on_ostypeBox_currentIndexChanged(int index)
         disable_ui();
 
         break;
+
+
+    case 4:
+
+
+        enable_ui();
+
+           ui->daddr->setText("127.0.0.1");
+           ui->port->setText("58526");
+           ui->data_root->setText("/sdcard/");
+           ui->filepath->setText("kodi_data/.kodi");
+
+
+
+        break;
+
+
+    case 5:
+
+
+        enable_ui();
+
+           // ui->daddr->setText("");
+           ui->data_root->setText("/sdcard/");
+           ui->filepath->setText("kodi_data/files/.kodi");
+
+
+
+        break;
+
+
         }
 }
 
@@ -782,3 +842,66 @@ void preferencesDialog::setdisableroot(const bool &disableroot)
 {
     ui->disableroot->setChecked(disableroot);
 }
+
+
+
+void preferencesDialog::on_clearPort_clicked()
+{
+      ui->port->setText("");
+}
+
+
+void preferencesDialog::on_wsa_clicked(bool checked)
+{
+    enable_ui();
+
+    if (checked)
+    {
+        ui->daddr->setText("127.0.0.1");
+        ui->port->setText("58526");
+        ui->data_root->setText("/sdcard/");
+        ui->filepath->setText("kodi_data/files/.kodi");
+        ui->scoped->setChecked(true);
+
+    }
+
+      else
+    {
+        ui->daddr->setText("");
+        ui->filepath->setText("/files/.kodi");
+        ui->port->setText("5555");
+        ui->data_root->setText("/sdcard/");
+
+    }
+
+
+
+
+
+}
+
+
+void preferencesDialog::on_scoped_clicked(bool checked)
+{
+
+    if (checked)
+    {
+
+
+        ui->data_root->setText("/sdcard/");
+        ui->filepath->setText("kodi_data/files/.kodi");
+
+    }
+
+      else
+    {
+
+        ui->filepath->setText("/files/.kodi");
+        ui->data_root->setText("/sdcard/");
+
+    }
+
+
+}
+
+

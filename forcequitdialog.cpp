@@ -1,7 +1,7 @@
 #include "forcequitdialog.h"
 #include "ui_forcequitdialog.h"
 
-forcequitDialog::forcequitDialog(bool takeaction, QWidget *parent) :
+forcequitDialog::forcequitDialog(bool takeaction, QString appname, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::forcequitDialog)
 {
@@ -21,13 +21,15 @@ forcequitDialog::forcequitDialog(bool takeaction, QWidget *parent) :
      {
          ui->title->setText("Start Application");
          ui->explainLabel->setText("String: app starting activity");
-         ui->packagename->setText("org.xbmc.kodi/org.xbmc.kodi.Splash");
+         //ui->packagename->setText("org.xbmc.kodi/org.xbmc.kodi.Splash");
+         ui->packagename->setText(appname);
     }
      else
      {
         ui->title->setText("Stop Application");
         ui->explainLabel->setText("String: app package name");
-        ui->packagename->setText("org.xbmc.kodi");
+       // ui->packagename->setText("org.xbmc.kodi");
+        ui->packagename->setText(appname);
     }
 
 }
@@ -36,6 +38,9 @@ forcequitDialog::~forcequitDialog()
 {
     delete ui;
 }
+
+
+
 
 void forcequitDialog::on_kodiButton_clicked()
 {
@@ -64,3 +69,14 @@ void forcequitDialog::on_otherButton_clicked()
 QString forcequitDialog::packagename() {
    return ui->packagename->text();
 }
+
+void forcequitDialog::on_pushButton_clicked()
+{
+
+   if (m_action)
+       ui->packagename->setText("org.xbmc.kodi/org.xbmc.kodi.Splash");
+   else
+       ui->packagename->setText("org.xbmc.kodi");
+
+}
+

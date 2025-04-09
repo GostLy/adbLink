@@ -1,5 +1,8 @@
+// backup dialog
+
 #include "backupdialog.h"
 #include "ui_backupdialog.h"
+#include "getadbdata.h"
 #include <QProcess>
 #include <QFile>
 #include <QString>
@@ -23,24 +26,6 @@ QString tmpdir_backup;
 QString thumbnail_backup_dir;
 QString data_root_backup;
 
-
-
-///////////////////////////////////////////////
-QString RunProcess_backup(QString cstring)
-{
- QProcess run_command;
- run_command.setProcessChannelMode(QProcess::MergedChannels);
- run_command.start(cstring);
-
- run_command.waitForStarted();
-
- while(run_command.state() != QProcess::NotRunning)
-     qApp->processEvents();
-
- QString command=run_command.readAll();
-
- return command;
-}
 
 
 QString backupDialog::return_data_root() {
@@ -69,7 +54,7 @@ void backupDialog::setadb_backup(const QString &adb_backup, const QString &data_
     //ui->backup_label2->setText("Thumbnails: "+data_root_backup);
 
     cstring=adb_backup+" shell /data/local/tmp/adblink/busybox find /storage/ -type d -maxdepth 2 -perm 0771";
-    command=RunProcess_backup(cstring);
+    command=getadbOutput(cstring);
 
  // QMessageBox::critical(0,"",data_root_backup);
 

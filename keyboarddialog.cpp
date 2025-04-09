@@ -1,5 +1,6 @@
 #include "keyboarddialog.h"
 #include "ui_keyboarddialog.h"
+#include "getadbdata.h"
 #include <QMessageBox>
 #include <QProcess>
 QString cstring;
@@ -9,7 +10,7 @@ QString cstring;
 Key Code Events
 
 0 KEYCODE_UNKNOWN
-1 KEYCODE_MENU
+82 KEYCODE_MENU
 2 KEYCODE_SOFT_RIGHT
 85 KEYCODE_MEDIA_PLAY_PAUSE
 89 KEYCODE_MEDIA_REWIND
@@ -73,22 +74,6 @@ Key Code Events
 
 */
 
-///////////////////////////////////////////////
-QString RunProcess_Keyboard(QString cstring)
-{
- QProcess run_command;
- run_command.setProcessChannelMode(QProcess::MergedChannels);
- run_command.start(cstring);
-
- run_command.waitForStarted();
-
- while(run_command.state() != QProcess::NotRunning)
-     qApp->processEvents();
-
- QString command=run_command.readAll();
-
- return command;
-}
 
 
 
@@ -120,61 +105,61 @@ void keyboardDialog::setdaddressLabel(const QString &daddress)
 
 void keyboardDialog::on_upButton_clicked()
 {
- QString command=RunProcess_Keyboard(cstring+"19");
+ QString command=getadbOutput(cstring+"19");
 }
 
 void keyboardDialog::on_downButton_clicked()
 {
-    QString command=RunProcess_Keyboard(cstring+"20");
+    QString command=getadbOutput(cstring+"20");
 }
 
 void keyboardDialog::on_leftButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"21");
+   QString command=getadbOutput(cstring+"21");
 }
 
 void keyboardDialog::on_rightButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"22");
+   QString command=getadbOutput(cstring+"22");
 }
 
 void keyboardDialog::on_homeButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"3");
+   QString command=getadbOutput(cstring+"3");
 }
 
 void keyboardDialog::on_selectButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"23");
+   QString command=getadbOutput(cstring+"23");
 }
 
 void keyboardDialog::on_menuButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"1");
+   QString command=getadbOutput(cstring+"82");
 }
 
 void keyboardDialog::on_backButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"4");
+   QString command=getadbOutput(cstring+"4");
 }
 
 void keyboardDialog::on_fastforwardButton_clicked()
 {
-    QString command=RunProcess_Keyboard(cstring+"90");
+    QString command=getadbOutput(cstring+"90");
 }
 
 void keyboardDialog::on_rewindButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"89");
+   QString command=getadbOutput(cstring+"89");
 }
 
 void keyboardDialog::on_playpauseButton_clicked()
 {
-   QString command=RunProcess_Keyboard(cstring+"85");
+   QString command=getadbOutput(cstring+"85");
 
 }
 
 void keyboardDialog::on_powerButton_clicked()
 {
-    QString command=RunProcess_Keyboard(cstring+"26");
+    QString command=getadbOutput(cstring+"26");
 }

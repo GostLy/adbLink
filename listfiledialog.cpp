@@ -1,6 +1,6 @@
 #include "listfiledialog.h"
 #include "ui_listfiledialog.h"
-// #include <QDebug>
+#include <QDebug>
 
 listfileDialog::listfileDialog(QWidget *parent) :
     QDialog(parent),
@@ -19,8 +19,6 @@ listfileDialog::~listfileDialog()
 ///////////////////////////////////////////////////
 
 void listfileDialog::setFilelist(const QStringList &filelist) {
-
-// qDebug() << filelist;
 
 
 for (QStringList::const_iterator it = filelist.begin();

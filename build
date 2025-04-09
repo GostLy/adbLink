@@ -1,0 +1,53 @@
+#!/bin/bash
+
+copy_files() {
+  cp "program$1.h" program.h
+  cp "mainwindow$1.ui" mainwindow.ui
+  cp "adblink$1.ico" adblink.ico
+  cp "adblink$1.icns" adblink.icns
+  cp "assets/menu$1.html" assets/menu.html
+  cp "assets/adblink$1.png" assets/adblink.png
+  
+  if [ $1 -ne 3 ]; then
+    cp "preferencesdialog$1.ui" preferencesdialog.ui
+  fi
+}
+
+if [ $# -le 0 ]; then 
+   echo "set up adblink 1 2 3"
+   exit 1
+fi
+
+pro_file="./adblink.pro"
+target_name=""
+
+case $1 in
+  1)
+    copy_files 1
+    target_name="adblink"
+    ;;
+  2)
+    copy_files 2
+    target_name="adblink2"
+    ;;
+  3)
+    copy_files 3
+    target_name="wsalink"
+    ;;
+  *)
+    echo "Invalid build number"
+    exit 1
+    ;;
+esac
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS
+    sed_command="sed -i ''"
+else
+    # Linux
+    sed_command="sed -i''"
+fi
+
+eval "$sed_command 's/TARGET = .*/TARGET = $target_name/' $pro_file" 2>/dev/null
+echo "$target_name will compile"
+exit 0

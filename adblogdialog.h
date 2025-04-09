@@ -28,6 +28,13 @@ private:
     Ui::adblogDialog *ui;
 };
 
+extern int os1;
+extern QString logdir;
+extern QString logfile1;
+extern QString logfile2;
+extern QString content;
+extern bool getfile;
 
+extern QClipboard *clipboard;
 
 #endif // ADBLOGDIALOG_H

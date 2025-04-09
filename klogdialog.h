@@ -42,4 +42,8 @@ private:
 
 };
 
+extern int kos1;
+extern QClipboard *kclipboard;
+
+
 #endif // KLOGDIALOG_H

@@ -1,3 +1,642 @@
+07/15/24
+
+Scoped storage detection expanded to
+optionally create an alternative folder
+for Kodi's data at /sdcard/kodi_data/ and
+the pointer file /sdcard/xbmc_env.properties 
+upon connection to an Android 11 or greater 
+device.
+
+This functionality is also available via the Utility
+menu function: Create Kodi data
+
+
+04/12/24
+
+Version 6.1
+
+File manager dialog geometry saved between sessions.
+
+Start program dialog: 
+The Start program choice is now saved between sessions
+
+Stop program dialog: 
+The Stop program choice is now saved between sessions
+
+Send text to device:
+Send text string to active input field on connected device
+
+Quest headset (beta):
+Change various settings on the Quest headset.
+Tested with Quest 2/3. Changes are not persistent, 
+and are cleared by rebooting the device.
+
+01/24/24
+
+Version 6.0
+
+Sleep off/on fixed for max4K stick and Android 11
+
+Timer dialog added to adblink2 and wsalink utility menu
+
+
+12/02/2023
+
+Version 5.9
+
+Log viewer fails with scoped storage. Fixed.
+
+11/20/2023
+
+Version 5.8
+
+Scoped storage detection fails for Android 12. Fixed.
+
+
+10/05/2023
+
+Version 5.7
+
+http://www.jocala.com
+
+adb binary updated to 34.0.4-10411341
+
+aapt binary added for Windows & Mac. For Linux 
+users, adbfiles has a symlink to 
+/usr/bin/aapt which will need to be installed
+via apt-get.
+
+When using a Android 11/Fire OS 8.1 device, Kodi's 
+MANAGE_EXTERNAL_STORAGE permission is set
+to "allow" (to permit Kodi to access local 
+files outside of its sandbox). This occurs
+when a backup is restored.  
+
+See http://www.jocala.com/android11.html for
+more details.
+
+A "Set app permissions" function is added to the 
+Utility menu to allow changing the MANAGE_EXTERNAL_STORAGE 
+status for any application that includes this permission in
+its manifest. This is for Android 11/Fire OS 8.1 or greater 
+devices only.
+
+A "Get package name" function is added to the Utility 
+menu. The package name is required to change the 
+MANAGE_EXTERNAL_STORAGE permission for an application. This 
+function requires the aapt utility mentioned above.
+
+
+09/11/2023
+
+v5.6c
+
+File manager: device record's pull directory
+not replacing the global value. Fixed.
+
+File manager: confirmation message added to file
+pull routine for successful pulls.
+
+
+
+08/13/2023
+
+v5.6b
+
+File manager function incorrectly initializing
+dropdown menu. Fixed.
+
+macOS download format changed from .pkg to .dmg
+
+
+08/11/2023
+
+v5.6a
+
+Userids with embedded spaces resulted
+in scripting failure. Fixed.
+
+User home directory added to log.
+
+
+
+08/08/2023
+
+busybox location bug fixed
+
+File Manager now uses drag and drop for pushing files
+and directories from the local filesystem to the
+Android device. Although deprecated, the previous
+method of pushing files can still be used by
+checking "Use old file manager" in preferences.
+
+Application preferences now saved in a JSON file
+
+APK install directory retains last location used.
+
+Backup/restore directory retains last location used.
+
+Scrcpy arguments dialog is now optional via preferences.
+
+Utility menu function added to clear database
+
+When notified a new version of adbLink is ready
+for download, view changelog is now an option. A
+utility menu function has been added to view changelog
+as well.
+
+Utility menu function added to view system information:
+(architecture, devicename, manufacturer,
+filesystem scope status and Android version)
+
+Ad hoc IP now accepts a port.
+Enter ip with format: <ip>:<port>
+Default is port 5555.
+
+Edit Kodi XML files (scoped storage) bugfix
+
+Edit Kodi XML files (non-Android) bugfix
+
+Scoped storage restrictions are now detected
+automatically for Android 11 or greater devices.
+
+For adbLink and adbLink2, WSA (Windows Subsystem for Android)
+devices are connected via a utility menu selection.
+
+QT C++ framework updated to 5.15.2 for all platforms.
+
+Windows scrcpy updated to scrcpy-win64-v2.1
+
+Windows adblink/adblink2/wsalink are now x86_64 only.
+
+07/27/23
+
+5.5 Bugfix for Windows.
+Console fails to open.
+
+
+05/26/23
+
+5.5 release
+
+Bugfix for null directory values in file manager
+
+Bugfix for port misallocation when connecting via
+ad hoc ip, and possibly at other times as well. 
+
+
+
+04/22/23
+
+5.4 release
+
+File manager fixes
+
+Dropdown menu regression for kodi fixed.
+
+
+04/20/23
+
+5.3 release
+
+File manager resize bug fixed
+
+04/10/23
+
+5.2 release
+
+adbLink, adbLink2 and wsaLink codebases
+merged into version 5.2
+
+Windows: Program location bug fixed.
+Windows: adbLink/adbLink2 Scrcpy updated to v2.0
+
+
+08/08/22
+
+5.1 release
+
+Internal script directory made
+uniform for all architectures.
+
+Terminal selection expanded. 
+Preferences now allows you to
+choose Windows Terminal or
+Command Prompt for Windows,
+Terminal or iTerm for macOS,
+and  Gnome Terminal, KDE Console
+or XFCE4 Terminal for Linux.
+
+Initial support for Intel ChromeOS.
+Tested with ChromeOS Flex.
+
+
+
+05/09/22
+
+Universal version 5.0 for
+Mac released to production
+
+
+04/20/22
+
+Version 5.0
+
+Display scaling mode changed.
+
+Routine for Android 11 Kodi
+data area creation added
+
+Keycode for remote keypad menu
+button corrected
+
+Support email changed from jocala@jocala.com
+to adbjocala@gmail.com
+
+Optional arguments can be passed to scrcpy
+
+
+12/03/21
+
+File manager sorting added
+
+
+11/14/21
+
+SQL database input bug fixed 
+
+Cleanup of alternate media center 
+code. (SPMC, etc)
+
+
+11/02/21
+
+StrCopy tooltip fixed
+
+Cleanup code within File Manager subroutine
+
+Support for Microsoft Subsystem for Android added
+
+adbLink spun off into adbLink2, a version 
+without Kodi support.
+
+sqlite3 binary added to bundle
+
+adbLink 4.5  09/20/21
+
+Logcat function fixed.
+
+Delete Thumbnails function added. See Thumbnails note at
+http://www.jocala.com/thumbnails.html or view topic Thumbnails
+in adbLink help.
+
+SpcCpy
+
+For Android 11, Google has implemented scoped storage 
+which  removes the ability for external applications to
+write in /sdcard/Android/data/. This has the unfortunate
+side-effect of preventing adbLink from accessing Kodi data at
+ /sdcard/Android/data/org.xbmc.kodi, meaning no backup/restore, no
+ edit of xml files, or any function requiring write access.
+
+adbLink now has the ability to relocate Kodi's files to
+/sdcard/kodi_data/ where they are accessible for
+ backup/restore, edit, etc. 
+
+This workaround is mainly for Android 11,
+but it works with other Android versions as well.
+
+See further detail at http://www.jocala.com/android11.html
+or in adbLink's built-in help.
+
+Root:  mount r/w - r/o  now affects / not /system
+
+adbLink 4.3  01/24/20
+
+Fix for spurious "device unauthorized" when connecting
+Internal support links reverted to http from https
+
+
+adbLink 4.2  07/14/19
+
+Open a "stop application" dialog if Kodi is running when the
+restore button is selected. (if Kodi is running a restore
+cannot be done).
+
+jocala.com has reverted to http from https.
+
+Windows 7 users may need to clear Windows 7 DNS cache:
+
+From a command prompt type “ipconfig /flushdns” (without the quotes).
+
+Your browser may also need to clear its cache as well.
+
+adbLink 4.2 reverts internal references from https://jocala.com
+to http://jocala.com
+
+download at http://www.jocala.com
+
+
+adbLink 4.1  04/09/19
+
+Folder push recursion fixed.
+
+Utility menu/Program start: Window title corrected.
+
+
+adbLink 4.0  02/02/19
+
+File manager empty panel issue fixed
+
+If file manager still has a blank panel please
+reinstall busybox on your device:
+
+1. Utility menu
+2. Reinstall Busybox
+
+Google+ support links removed. Google+ is EOL 4/2/19.
+
+
+adbLink 3.9  01/03/19
+
+macOS: Dark mode support.
+
+macOS: Use iTerm as an alternative to Terminal
+
+Windows 7: Console didn't open for some users. Fixed.
+
+Moving Kodi data to external storage fails if external
+storage lacks an Android/data/ file structure. Fixed.
+
+Utility menu function: Set timers:  Turn Fire TV sleep and
+screensaver timers off or set timers to custom value.
+
+Check for pull destination validity added to file manager
+
+Log file location for Windows incorrect: Fixed.
+
+Kodi restore for hosts (Windows/Mac/Linux) removed.
+Restore is now only functional for Android devices.
+
+Utility menu function: Show architecture
+Displays the architecture for connected device
+
+Help website references changed from http to https
+
+HTML help added for new functions above
+
+
+adbLink 3.8  10/14/18
+
+OpenSSL support added for https format
+(jocala.com address moved from http to https)
+
+Windows dependencies removed for:
+
+libgcc_s_dw2-1.dll
+libstdc++-6.dll
+libwinpthread-1.dll
+
+These dll files are no longer
+required by adbLink for Windows.
+
+Linux: Support for KDE Konsole added. Select
+KDE Konsole in adbLink preferences, otherwise
+the default of Gnome terminal is used for
+adbLink's Console.
+
+Window titles added where missing
+
+Job number removed from running jobs display
+
+icons folder added to linux adbfiles directory.
+This contains adbLink icons in png,ico and icns 
+formats.
+
+
+adbLink 3.7  08/14/18
+
+Message popups have been adjusted to work
+with multi-monitor systems.
+
+Toast-style message popups fail
+with multi-monitor systems. 
+Currently disabled.
+
+adbLink update checking routine updated.
+
+
+adbLink 3.6  02/28/18
+
+/sdcard, /data/local/tmp, & /storage
+added to presets for file manager
+
+Activity indicator for local restores
+now properly resets when job is done.
+
+File manager checks that preset
+or ad hoc path exists prior to
+directory change via go button.
+
+Android Debug Bridge updated
+Version 1.0.39 - 0.0.1-4500957
+Note: This version no longer
+works with Windows XP.
+
+File manager updated to work with
+adb v1.0.39
+
+Fastboot updated
+Version 0.0.1-4500957
+
+
+
+adbLink 3.5  10/01/17
+
+Labeling system for long running processes modified.
+
+Forum and WIKI Help links updated.
+
+Busybox permissions check added.
+
+Utility menu function added: Re-install Busybox.
+
+Help menu item added for Re-install Busybox.
+
+
+
+adbLink 3.4  06/27/17
+
+Cconnect/disconnect buttons are disabled when 
+the device OS isn't Android.
+
+The pull directory in the device record now overrides
+the global default pull directory in in preferences.
+
+A check box, "Disable root", has been added to the
+device dialog. If you have a rooted device that
+fails to display the file manager correctly, try
+checking this box. See help for more detail on this.
+
+
+adbLink 3.3 05/15/17
+
+Remote keypad bug fixed
+
+Check for preference database table
+bug fixed. 
+
+Keyboard shortcuts added for main
+screen buttons. Hover over button
+to see tooltip and key assignment
+or see help topic "Shortcuts".
+
+Shortcut topic added to help. 
+Lists tooltip and keyboard
+shortcuts for main screen buttons.
+
+http://www.jocala.com
+
+adbLink 3.2 changelog 05/06/17
+
+Check for updates bug fixed
+File Manager progress bar bug fixed
+Windows XP database/logfile creation bug fixed
+XP/Win7 form misalignment fixed
+Mac Local restore bug fixed
+
+Note:  adbLink 3.1 has been pulled. If you 
+installed adbLink 3.1 please upgrade to adbLink 3.2
+or downgrade to adbLink 3.0
+
+
+adbLink 3.1 changelog  05/01/17
+
+The file manager is now root-aware. Perform common file management
+functions (copy,move,rename,mkdir,etc) on the /system and /data
+partitions if your device is rooted.
+ 
+When upgrading adbLink versions, data is preserved. Tested
+with adbLink 2.04 and up. 
+
+The database and log files are now stored in a standard
+directory located in the user's $HOME. Mac users can
+now run adbLink without admin privileges. 
+
+The progress bar activity indicator is back.
+
+Devices can be accessed on an ad hoc basis: double-clicking
+a USB serial number or entering an IP address on-the-fly
+allows interaction with the device w/o first creating
+a device record. In this case, Kodi defaults are assumed. 
+
+Notification messages: toast-style messages or normal style is
+now a preference, with normal set as default.
+
+A global folder location for files copied from your device
+is set to your system $HOME. Changed to a global location of your
+preference, or overridden by a per-device preference in a
+device record.
+
+Keypad now uses device address as dialog title
+
+Log filename defaults to kodi.log or spmc.log depending on 
+configuration
+
+System help updated
+
+
+adbLink 3.00 changelog
+
+Parallel background processes: Potentially lengthy jobs (backup,restore,etc)
+are now assigned a job ID and the running state is displayed in a
+listbox. 
+
+New file manager: Easy move/copy/delete of files and folders on
+Android devices. Copy multiple files and folders from Android
+devices to PC/Mac or from PC/Mac to Android device.
+
+The progress bar style activity indicator has been replaced by a
+color-changing icon. It turns green while background processes are
+running, blue when the job queue is empty.
+
+Please note that the progress bar widget was merely an indicator
+of a background process running. It never measured time remaining,
+but just ran until closed by a process ending.
+
+
+The listbox of connected devices now shows device name not
+IP address/USB serial number. For USB-connected devices, the
+serial number is displayed only for devices that have not
+been entered into the adbLink database.
+
+File selection dialogs, log viewers and editors are now
+resizeable.
+
+Fixed: adbLink not working in space-embedded folder
+
+Uninstall APK search filter fixed
+
+Keypad button help/tooltip corrected
+
+Easy edit of Kodi XML files on any platform.
+
+Local IP address reported in log file.
+
+Toast-style notifications added
+
+Message added for device connection errors
+
+Stop ADB button focus issue fixed
+
+Root menu restored for /system partition mount
+
+Check for updates button in device record restored
+
+Menu function: Kodi Data Usage added. 
+Shows amount of space used by Kodi data.
+
+Menu function: ADB/WIFI. Enables 
+ADB debugging over WIFI for devices
+that lack this feature. 
+
+Moving Kodi data updates Kodi partition in device record
+
+Data move routine now checks for valid 
+media center data before writing
+/sdcard/xbmc_env.properties file.
+
+
+adbLink is tested on Windows/Mac/Linux with Amazon Fire TV devices, Nvidia
+Shield TV, and Xiaomi Mi Box 3
+
+
+
+adbLink 2.07 changelog
+
+Windows: If installing on top of an existing installation, preexisting
+database and log files will be erased.
+
+Select multiple apk files for installation to Android device
+
+Select multiple files for push to Android device
+
+Start/Stop Android apps on connected device
+
+Logs menu item added: view adbLink/Kodi logs
+
+Download SPMC file menu function added
+
+Double-print of port in logfile corrected
+
+Parallel adb processes functionality restored
+
+ADB Port is not reset when switching OS in preferences: fixed
+
+Root menu removed
+
+
+
 adbLink 2.06 changelog
 
 adbLink now works with Kodi for Android/Windows/macOS/Linux
@@ -53,8 +692,6 @@ Application name change per
 demand from Amazon's lawyers.
 
 New name: adbLink
-
-QT framework updated to v5.6
 
 Deprecated Fire OS functions removed
 
@@ -211,8 +848,6 @@ Linux: sucheck delay added
 
 
 adbLink 1.27 changelog
-
-Qt Framework updated from 5.3.2 to 5.4.2 
 
 Llama Options dialog updated to correct
 misalignment in some situations.
@@ -621,8 +1256,6 @@ various minor bugs fixed, forms adjusted, etc.
 
 
 adbLink 1.07 changelog
-=======================
-Qt framework updated to 5.3.2
 
 Linux bug for file selection on usb devices fixed.
 

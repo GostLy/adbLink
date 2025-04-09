@@ -49,4 +49,11 @@ private:
     Ui::cacheDialog *ui;
 };
 
+
+extern QClipboard *cacheclipboard;
+extern int cval1;
+extern QString cachecontent;
+
+
+
 #endif // CACHEDIALOG_H
